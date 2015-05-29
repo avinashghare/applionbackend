@@ -6,22 +6,30 @@ var stateRest = angular.module('stateRest', [])
     
     return{
         create: function(data){
-            console.log();
-           return $http.get(apiurl+"/index.php/state/create",{params:data});
+            console.log(data);
+           return $http.post(apiurl+"state",data);
         },
         find: function(){
             console.log();
-            return $http.get(apiurl+"/index.php/state/find");
+            return $http.get(apiurl+"state");
         },
+        findcountry: function(){
+            console.log();
+            return $http.get(apiurl+"country");
+        },
+//        finduserlocation: function(){
+//            console.log();
+//            return $http.get(apiurl+"userlocation");
+//        },
         findonestate: function(id){
             console.log();
-            return $http.get(apiurl+"/index.php/state/findone?id="+id,{})
+            return $http.get(apiurl+"state/"+id)
         },
         deletestate: function(id){
-            return $http.get(apiurl+"/index.php/state/delete?id="+id,{});
+            return $http.delete(apiurl+"state/"+id,{});
         },
         updatestate: function(data){
-            return $http.get(apiurl+"/index.php/state/update",{params:data});
+            return $http.put(apiurl+"state/"+data.id,data);
         }
     }
 

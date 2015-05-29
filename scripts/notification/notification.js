@@ -26,6 +26,15 @@ appNotification.controller('notification',
 appNotification.controller('createnotification',
   function ($scope,notificationRest,$location) {
       $scope.demo="hello";
+    
+    
+      var user=function(data,status){
+          console.log(data);
+          // $scope.find=data;
+          $scope.user=data;
+      };
+     notificationRest.finduser().success(user);
+    
     var notificationcreated=function(data,status)
       {
         console.log(data);
@@ -45,9 +54,17 @@ appNotification.controller('editnotification',
         $scope.value = $routeParams.id;
         toastr.success($scope.value);
 
+      var user=function(data,status){
+          console.log(data);
+          // $scope.find=data;
+          $scope.user=data;
+      };
+     notificationRest.finduser().success(user);
+    
         var findnotification = function (data, status) {
             $scope.notification = {};
             $scope.notification = data;
+            $scope.notification.user=$scope.notification.user.id;
             console.log(data);
            // $scope.alldata = data;
         };
@@ -90,10 +107,18 @@ appNotification.controller('deletenotification',
         console.log($scope.value);
         toastr.success($scope.value);
 
+      var user=function(data,status){
+          console.log(data);
+          // $scope.find=data;
+          $scope.user=data;
+      };
+     notificationRest.finduser().success(user);
+    
         var findnotification = function (data, status) {
             $scope.notification = {};
             $scope.notification = data;
             $scope.notification = data;
+            $scope.notification.user=$scope.notification.user.id;
         };
 
         notificationRest.findonenotification($scope.value).success(findnotification);

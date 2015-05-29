@@ -6,22 +6,34 @@ var notificationRest = angular.module('notificationRest', [])
     
     return{
         create: function(data){
+            console.log(data);
+           return $http.post(apiurl+"notification",data);
+        },
+        findpincode: function(){
             console.log();
-           return $http.get(apiurl+"/index.php/notification/create",{params:data});
+            return $http.get(apiurl+"pincode");
         },
         find: function(){
             console.log();
-            return $http.get(apiurl+"/index.php/notification/find");
+            return $http.get(apiurl+"notification");
+        },
+        findbrand: function(){
+            console.log();
+            return $http.get(apiurl+"brand");
+        },
+        finduser: function(){
+            console.log();
+            return $http.get(apiurl+"user");
         },
         findonenotification: function(id){
             console.log();
-            return $http.get(apiurl+"/index.php/notification/findone?id="+id,{})
+            return $http.get(apiurl+"notification/"+id)
         },
         deletenotification: function(id){
-            return $http.get(apiurl+"/index.php/notification/delete?id="+id,{});
+            return $http.delete(apiurl+"notification/"+id,{});
         },
         updatenotification: function(data){
-            return $http.get(apiurl+"/index.php/notification/update",{params:data});
+            return $http.put(apiurl+"notification/"+data.id,data);
         }
     }
 

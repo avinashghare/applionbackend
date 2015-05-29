@@ -1,61 +1,56 @@
 var appUser = angular.module('appUser', ['userRest', 'ngRoute']);
 
 appUser.controller('user',
-  function ($scope,userRest) {
-      $scope.demo="";
-      var user=function(data,status){
-          console.log(data);
-          // $scope.find=data;
-          $scope.data99=data;
-          if(data=="false")
-          {
-              $scope.usermessage="No data found";
-              $scope.visibletable=false;
-            
-          }
-          else
-          {
-              
-              $scope.visibletable=true;
-              $scope.find=data;
-          }
-      };
-      userRest.find().success(user);
-      
-     
-});
+    function ($scope, userRest) {
+        $scope.demo = "";
+        var user = function (data, status) {
+            console.log(data);
+            // $scope.find=data;
+            $scope.data99 = data;
+            if (data == "false") {
+                $scope.usermessage = "No data found";
+                $scope.visibletable = false;
+
+            } else {
+
+                $scope.visibletable = true;
+                $scope.find = data;
+            }
+        };
+        userRest.find().success(user);
+
+
+    });
 
 appUser.controller('createuser',
-  function ($scope,userRest,$location) {
-      $scope.demo="hello";
-    
-      var pincode=function(data,status){
-          console.log(data);
-          // $scope.find=data;
-          $scope.pincode=data;
-      };
-     userRest.findpincode().success(pincode);
-    
-      var userloaction=function(data,status){
-          console.log(data);
-          // $scope.find=data;
-          $scope.userlocation=data;
-      };
-     userRest.finduserlocation().success(userloaction);
-    
-    var usercreated=function(data,status)
-      {
-        console.log(data);
-        $location.url("/user");
-      }
-    
-      
-      $scope.create=function(data)
-      {
-          console.log(data);
-          userRest.create(data).success(usercreated);
-      };
-      });
+    function ($scope, userRest, $location) {
+        $scope.demo = "hello";
+
+        var pincode = function (data, status) {
+            console.log(data);
+            // $scope.find=data;
+            $scope.pincode = data;
+        };
+        userRest.findpincode().success(pincode);
+
+        var userloaction = function (data, status) {
+            console.log(data);
+            // $scope.find=data;
+            $scope.userlocation = data;
+        };
+        userRest.finduserlocation().success(userloaction);
+
+        var usercreated = function (data, status) {
+            console.log(data);
+            $location.url("/user");
+        }
+
+
+        $scope.create = function (data) {
+            console.log(data);
+            userRest.create(data).success(usercreated);
+        };
+    });
 
 appUser.controller('edituser',
     function ($scope, userRest, $location, $routeParams) {
@@ -64,37 +59,48 @@ appUser.controller('edituser',
         toastr.success($scope.value);
 
     
-      var pincode=function(data,status){
-          console.log(data);
-          // $scope.find=data;
-          $scope.pincode=data;
-          
-      };
-     userRest.findpincode().success(pincode);
-    
-      var userloaction=function(data,status){
-          console.log(data);
-          // $scope.find=data;
-          $scope.userlocation=data;
-      };
-     userRest.finduserlocation().success(userloaction);
-    
-    
-    
+        $scope.addlocation = function () {
+            $scope.user.userlocation.push({name:"",address:'',pincode:''});
+        };
+        $scope.removelocation = function (i) {
+            $scope.user.userlocation.splice(i, 1);
+        };
+        $scope.pageview = 1;
+        $scope.changepageview = function (num) {
+            $scope.pageview = num;
+        }
+
+        var pincode = function (data, status) {
+            console.log(data);
+            // $scope.find=data;
+            $scope.pincode = data;
+
+        };
+        userRest.findpincode().success(pincode);
+
+        var userloaction = function (data, status) {
+            console.log(data);
+            // $scope.find=data;
+            $scope.userlocation = data;
+        };
+        userRest.finduserlocation().success(userloaction);
+
+
+
         var finduser = function (data, status) {
             $scope.user = {};
             $scope.user = data;
-            $scope.user.pincode=$scope.user.pincode.id;
-            $scope.user.dob=moment($scope.user.dob).format('YYYY-MM-DD');
-//            $scope.user.dob=$filter('date')($scope.user.date, "dd/MM/yyyy");
+            $scope.user.pincode = $scope.user.pincode.id;
+            $scope.user.userlocation.pincode = $scope.user.userlocation.pincode.id;
+            $scope.user.dob = moment($scope.user.dob).format('YYYY-MM-DD');
             console.log($scope.user.dob);
-//                $scope.user.pincode.id;
+            //                $scope.user.pincode.id;
             $scope.alldata = data;
         };
 
         userRest.findoneuser($scope.value).success(finduser);
 
-        
+
         var user = function (data, status) {
             console.log(data);
             if (data == "false") {
@@ -106,12 +112,12 @@ appUser.controller('edituser',
             }
         };
         userRest.find().success(user);
-        
+
         var updated = function (data, status) {
-             userRest.find().success(user);
-           // $scope.visibletable = true;
-           // $scope.updatearea = false;
-             $location.url("/user");
+            userRest.find().success(user);
+            // $scope.visibletable = true;
+            // $scope.updatearea = false;
+            $location.url("/user");
             toastr.success("User Updated");
         };
 
@@ -130,6 +136,24 @@ appUser.controller('deleteuser',
         $scope.value = $routeParams.id;
         toastr.success($scope.value);
 
+
+        var pincode = function (data, status) {
+            console.log(data);
+            // $scope.find=data;
+            $scope.pincode = data;
+
+        };
+        userRest.findpincode().success(pincode);
+
+        var userloaction = function (data, status) {
+            console.log(data);
+            // $scope.find=data;
+            $scope.userlocation = data;
+        };
+        userRest.finduserlocation().success(userloaction);
+
+
+
         var finduser = function (data, status) {
             $scope.user = {};
             $scope.user = data;
@@ -138,7 +162,7 @@ appUser.controller('deleteuser',
 
         userRest.findoneuser($scope.value).success(finduser);
 
-        
+
         var user = function (data, status) {
             console.log(data);
             // $scope.find=data;
@@ -151,18 +175,18 @@ appUser.controller('deleteuser',
             }
         };
         userRest.find().success(user);
-        
-        
-        ondelete=function(data,status) {
-          toastr.success("User Deleted");
+
+
+        ondelete = function (data, status) {
+            toastr.success("User Deleted");
             $location.url("/user");
-        userRest.find().success(user);  
-      };
-      
-      
-      $scope.delete=function(){
-         // $scope.usermessage=id;
-        userRest.deleteuser($scope.value).success(ondelete);
-      };
+            userRest.find().success(user);
+        };
+
+
+        $scope.delete = function () {
+            // $scope.usermessage=id;
+            userRest.deleteuser($scope.value).success(ondelete);
+        };
 
     });

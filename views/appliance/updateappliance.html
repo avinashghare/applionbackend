@@ -1,0 +1,249 @@
+<div class="page">
+
+    <div class="row" ng-show="pageview==1">
+        <div class="col-md-9">
+            <section class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Appliance</strong>
+
+                </div>
+
+                <div class="panel-body">
+
+
+                    <form name="form_constraints" class="form-validation" novalidate data-ng-submit="submitForm()">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Name</label>
+                            <input type="text" class="form-control" ng-model="appliance.name" placeholder="Name">
+                            <input type="hidden" class="form-control" ng-model="appliance.id" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Model Number</label>
+                            <input type="text" class="form-control" ng-model="appliance.modelnumber" placeholder="Model Number">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Serial Number</label>
+                            <input type="text" class="form-control" ng-model="appliance.serialnumber" placeholder="Serial Number">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Appliance Type</label>
+                            <div>
+                                <select ng-model="appliance.appliancetype" class="form-control">
+                                    <option value="" selected>Select Appliance Type</option>
+                                    <option ng-repeat="value in appliancetype" value="{{value.id}}">{{value.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Brand</label>
+                            <div>
+                                <select ng-model="appliance.brand" class="form-control">
+                                    <option value="" selected>Select brand</option>
+                                    <option ng-repeat="value in brand" value="{{value.id}}">{{value.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">User</label>
+                            <div>
+                                <select ng-model="appliance.user" class="form-control">
+                                    <option value="" selected>Select user</option>
+                                    <option ng-repeat="value in user" value="{{value.id}}">{{value.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Store</label>
+                            <div>
+                                <select ng-model="appliance.store" class="form-control">
+                                    <option value="" selected>Select store</option>
+                                    <option ng-repeat="value in store" value="{{value.id}}">{{value.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Location</label>
+                            <input type="text" class="form-control" ng-model="appliance.location" placeholder="Location">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Purchase Price</label>
+                            <input type="text" class="form-control" ng-model="appliance.purchaseprice" placeholder="Purchase Price">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Status</label>
+                            <div>
+                                <select ng-model="appliance.status" class="form-control">
+                                    <option value="" selected>Select Status</option>
+                                    <!--                                    <option ng-repeat="value in appliance" value="{{value.id}}">{{value.name}}</option>-->
+                                    <option value="archive">Archive</option>
+                                    <option value="delete">Delete</option>
+                                    <option value="transfer">Transfer</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!--                        <button type="submit" ng-click="update(appliance)" class="btn btn-primary">Update</button>-->
+                    </form>
+
+            </section>
+            </div>
+            <div class="col-md-3">
+                <div ng-include="'views/appliance/subnavigation.html'"></div>
+
+            </div>
+
+        </div>
+        <div class="row" ng-show="pageview==2">
+            <div class="col-md-9">
+                <section class="panel panel-default">
+                    <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span>Component Warranty</strong>
+
+                    </div>
+
+                    <div class="panel-body">
+                        {{appliance.componentwarranty}}
+                        <a ng-click="addcomponentwarranty();" class="btn btn-success">Add</a>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>Component</td>
+                                    <td>Serial</td>
+                                    <td>Warranty Period</td>
+                                    <td>Bill</td>
+                                    <td>Warranty Card</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="componentwarranty in appliance.componentwarranty">
+                                    <td>
+                                        <input type="text" ng-model="componentwarranty.component" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="text" ng-model="componentwarranty.serial" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="text" ng-model="componentwarranty.warrantyperiod" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="text" ng-model="componentwarranty.bill" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="text" ng-model="componentwarranty.warrantycard" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="button" ng-click="removecomponentwarranty(appliance.componentwarranty.indexOf(componentwarranty));" value="DELETE">
+                                    </td>
+                                    <!--                                <td><a ng-click="removelocation($index);" class="btn btn-danger">Delete</a></td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </section>
+            </div>
+            <div class="col-md-3">
+                <div ng-include="'views/appliance/subnavigation.html'"></div>
+            </div>
+
+        </div>
+        <div class="row" ng-show="pageview==3">
+            <div class="col-md-9">
+                <section class="panel panel-default">
+                    <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span>Warranty</strong>
+
+                    </div>
+
+                    <div class="panel-body">
+                        {{appliance.warranty}}
+                        <a ng-click="addwarranty();" class="btn btn-success">Add</a>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>Period</td>
+                                    <td>Type</td>
+                                    <td>Expiry</td>
+                                    <td>Is Covered</td>
+                                    <td>Is Warranty Or AMC</td>
+                                    <td>Purchase Month</td>
+                                    <td>Purchase Year</td>
+                                    <td>Purchase Date</td>
+                                    <td>Bill No.</td>
+                                    <td>Store</td>
+                                    <td>Includes</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="warranty in appliance.warranty">
+                                    <td>
+                                        <input type="text" ng-model="warranty.period" class="form-control">
+                                    </td>
+                                    <td>
+                                        <select ng-model="warranty.type">
+                                            <option value="">Select Type</option>
+                                            <option value="onsite">Onsite</option>
+                                            <option value="offsite">Offsite</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="date" ng-model="warranty.expiry" class="form-control">
+                                    </td>
+                                    <td>
+                                        <select ng-model="warranty.iscovered">
+                                            <option value="">Select Is Covered</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select ng-model="warranty.iswarrentyoramc">
+                                            <option value="">Select Is Warranty Or AMC</option>
+                                            <option value="warranty">Warranty</option>
+                                            <option value="amc">AMC</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" ng-model="warranty.purchasemonth" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="text" ng-model="warranty.purchaseyear" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="text" ng-model="warranty.purchasedate" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="text" ng-model="warranty.billno" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="text" ng-model="warranty.store" class="form-control">
+                                    </td>
+                                    <td>
+                                        <select ng-model="warranty.includes">
+                                            <option value="">Select Includes</option>
+                                            <option value="visit free">Visit Free</option>
+                                            <option value="service">Service</option>
+                                            <option value="parts">Parts</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="button" ng-click="removewarranty(appliance.warranty.indexOf(warranty));" value="DELETE" class="bt btn-danger">
+                                    </td>
+                                    <!--                                <td><a ng-click="removelocation($index);" class="btn btn-danger">Delete</a></td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </section>
+            </div>
+            <div class="col-md-3">
+                <div ng-include="'views/appliance/subnavigation.html'"></div>
+            </div>
+
+        </div>
+        <div class="col-md-offset-4">
+            <button type="submit" ng-click="update(appliance)" class="btn btn-primary">Update</button>
+        </div>
+
+    </div>

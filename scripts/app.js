@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  angular.module('app', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'easypiechart', 'mgo-angular-wizard', 'textAngular', 'ui.tree', 'ngMap', 'ngTagsInput', 'app.ui.ctrls', 'app.ui.directives', 'app.ui.services', 'app.controllers', 'app.directives', 'app.form.validation', 'app.ui.form.ctrls', 'app.ui.form.directives', 'app.tables', 'app.map', 'app.task', 'app.localization', 'app.chart.ctrls', 'app.chart.directives', 'app.page.ctrls','appUser','userRest','appArticle','articleRest','appScheduler','schedulerRest','appNotification','notificationRest','appVideo','videoRest','appImage','imageRest','appVote','voteRest','registeruserRest','appRegisteruser','appMembership','membershipRest','appState','stateRest','appMlaconstituency','mlaconstituencyRest','appMpconstituency','mpconstituencyRest','appPosition','positionRest','appRegion','regionRest','appUpload','uploadRest','appCenter','centerRest','appLogin','loginRest']).config([
+  angular.module('app', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'easypiechart', 'mgo-angular-wizard', 'textAngular', 'ui.tree', 'ngMap', 'ngTagsInput', 'app.ui.ctrls', 'app.ui.directives', 'app.ui.services', 'app.controllers', 'app.directives', 'app.form.validation', 'app.ui.form.ctrls', 'app.ui.form.directives', 'app.tables', 'app.map', 'app.task', 'app.localization', 'app.chart.ctrls', 'app.chart.directives', 'app.page.ctrls','appUser','userRest','appArticle','articleRest','appScheduler','schedulerRest','appVideo','videoRest','appImage','imageRest','appVote','voteRest','registeruserRest','appRegisteruser','appMembership','membershipRest','appMlaconstituency','mlaconstituencyRest','appMpconstituency','mpconstituencyRest','appPosition','positionRest','appRegion','regionRest','appUpload','uploadRest','appCenter','centerRest','appLogin','loginRest','appBrand','brandRest','appAppliance','applianceRest','appStore','storeRest','appFeedback','feedbackRest','appNotification','notificationRest','appPincode','pincodeRest','appDistrict','districtRest','appCountry','countryRest','appState','stateRest','appRating','ratingRest','appCallrating','callratingRest','appWarranty','warrantyRest','appHolidayCalender','holidaycalenderRest']).config([
     '$routeProvider', function($routeProvider) {
       return $routeProvider.when('/', {
         redirectTo: '/user'
@@ -18,6 +18,7 @@
       }).when('/user/edit/:id',{
           templateUrl: 'views/user/updateuser.html',
           controller:'edituser'  
+          
       }).when('/article', {
         templateUrl: 'views/article/showarticle.html',
           controller:'article'
@@ -31,18 +32,44 @@
           templateUrl: 'views/article/updatearticle.html',
           controller:'editarticle'
           
-      }).when('/scheduler', {
-        templateUrl: 'views/scheduler/showscheduler.html',
-          controller:'scheduler'
-      }).when('/scheduler/createscheduler', {
-        templateUrl: 'views/scheduler/createscheduler.html',
-          controller: 'createscheduler'
-      }).when('/scheduler/delete/:id',{
-          templateUrl: 'views/scheduler/deletescheduler.html',
-          controller:'deletescheduler'
-      }).when('/scheduler/edit/:id',{
-          templateUrl: 'views/scheduler/updatescheduler.html',
-          controller:'editscheduler'
+      }).when('/brand', {
+        templateUrl: 'views/brand/showbrand.html',
+          controller:'brand'
+      }).when('/brand/createbrand', {
+        templateUrl: 'views/brand/createbrand.html',
+          controller: 'createbrand'
+      }).when('/brand/delete/:id',{
+          templateUrl: 'views/brand/deletebrand.html',
+          controller:'deletebrand'
+      }).when('/brand/edit/:id',{
+          templateUrl: 'views/brand/updatebrand.html',
+          controller:'editbrand'
+          
+      }).when('/appliance', {
+        templateUrl: 'views/appliance/showappliance.html',
+          controller:'appliance'
+      }).when('/appliance/createappliance', {
+        templateUrl: 'views/appliance/createappliance.html',
+          controller: 'createappliance'
+      }).when('/appliance/delete/:id',{
+          templateUrl: 'views/appliance/deleteappliance.html',
+          controller:'deleteappliance'
+      }).when('/appliance/edit/:id',{
+          templateUrl: 'views/appliance/updateappliance.html',
+          controller:'editappliance'
+          
+      }).when('/store', {
+        templateUrl: 'views/store/showstore.html',
+          controller:'store'
+      }).when('/store/createstore', {
+        templateUrl: 'views/store/createstore.html',
+          controller: 'createstore'
+      }).when('/store/delete/:id',{
+          templateUrl: 'views/store/deletestore.html',
+          controller:'deletestore'
+      }).when('/store/edit/:id',{
+          templateUrl: 'views/store/updatestore.html',
+          controller:'editstore'
           
       }).when('/notification', {
         templateUrl: 'views/notification/shownotification.html',
@@ -57,6 +84,137 @@
           templateUrl: 'views/notification/updatenotification.html',
           controller:'editnotification'
       
+      }).when('/feedback', {
+        templateUrl: 'views/feedback/showfeedback.html',
+          controller:'feedback'
+      }).when('/feedback/createfeedback', {
+        templateUrl: 'views/feedback/createfeedback.html',
+          controller: 'createfeedback'
+      }).when('/feedback/delete/:id',{
+          templateUrl: 'views/feedback/deletefeedback.html',
+          controller:'deletefeedback'
+      }).when('/feedback/edit/:id',{
+          templateUrl: 'views/feedback/updatefeedback.html',
+          controller:'editfeedback'
+      
+      }).when('/pincode', {
+        templateUrl: 'views/pincode/pincode.html',
+          controller:'pinCode'
+      }).when('/pincode/createpincode', {
+        templateUrl: 'views/pincode/createpincode.html',
+          controller: 'createPincode'
+      }).when('/pincode/delete/:id',{
+          templateUrl: 'views/pincode/deletepincode.html',
+          controller:'deletepincode'
+      }).when('/pincode/edit/:id',{
+          templateUrl: 'views/pincode/updatepincode.html',
+          controller:'editpincode' 
+          
+          }).when('/district', {
+        templateUrl: 'views/district/district.html',
+          controller:'district'
+      }).when('/district/createdistrict', {
+        templateUrl: 'views/district/createdistrict.html',
+          controller: 'createdistrict'
+      }).when('/district/delete/:id',{
+          templateUrl: 'views/district/deletedistrict.html',
+          controller:'deletedistrict'
+      }).when('/district/edit/:id',{
+          templateUrl: 'views/district/updatedistrict.html',
+          controller:'editdistrict'
+          
+          }).when('/state', {
+        templateUrl: 'views/state/state.html',
+          controller:'state'
+      }).when('/state/createstate', {
+        templateUrl: 'views/state/createstate.html',
+          controller: 'createstate'
+      }).when('/state/delete/:id',{
+          templateUrl: 'views/state/deletestate.html',
+          controller:'deletestate'
+      }).when('/state/edit/:id',{
+          templateUrl: 'views/state/updatestate.html',
+          controller:'editstate'
+          
+          }).when('/country', {
+        templateUrl: 'views/country/country.html',
+          controller:'country'
+      }).when('/country/createcountry', {
+        templateUrl: 'views/country/createcountry.html',
+          controller: 'createcountry'
+      }).when('/country/delete/:id',{
+          templateUrl: 'views/country/deletecountry.html',
+          controller:'deletecountry'
+      }).when('/country/edit/:id',{
+          templateUrl: 'views/country/updatecountry.html',
+          controller:'editcountry'
+          
+          }).when('/rating', {
+        templateUrl: 'views/rating/showrating.html',
+          controller:'rating'
+      }).when('/rating/createrating', {
+        templateUrl: 'views/rating/createrating.html',
+          controller: 'createrating'
+      }).when('/rating/delete/:id',{
+          templateUrl: 'views/rating/deleterating.html',
+          controller:'deleterating'
+      }).when('/rating/edit/:id',{
+          templateUrl: 'views/rating/updaterating.html',
+          controller:'editrating'
+          
+          }).when('/callrating', {
+        templateUrl: 'views/callrating/showcallrating.html',
+          controller:'callrating'
+      }).when('/callrating/createcallrating', {
+        templateUrl: 'views/callrating/createcallrating.html',
+          controller: 'createcallrating'
+      }).when('/callrating/delete/:id',{
+          templateUrl: 'views/callrating/deletecallrating.html',
+          controller:'deletecallrating'
+      }).when('/callrating/edit/:id',{
+          templateUrl: 'views/callrating/updatecallrating.html',
+          controller:'editcallrating'
+          
+          }).when('/warranty', {
+        templateUrl: 'views/warranty/showwarranty.html',
+          controller:'warranty'
+      }).when('/warranty/createwarranty', {
+        templateUrl: 'views/warranty/createwarranty.html',
+          controller: 'createwarranty'
+      }).when('/warranty/delete/:id',{
+          templateUrl: 'views/warranty/deletewarranty.html',
+          controller:'deletewarranty'
+      }).when('/warranty/edit/:id',{
+          templateUrl: 'views/warranty/updatewarranty.html',
+          controller:'editwarranty'
+          
+          }).when('/holidaycalender', {
+        templateUrl: 'views/holidaycalender/holidaycalender.html',
+          controller:'holidaycalender'
+      }).when('/holidaycalender/createholidaycalender', {
+        templateUrl: 'views/holidaycalender/createholidaycalender.html',
+          controller: 'createholidaycalender'
+      }).when('/holidaycalender/delete/:id',{
+          templateUrl: 'views/holidaycalender/deleteholidaycalender.html',
+          controller:'deleteholidaycalender'
+      }).when('/holidaycalender/edit/:id',{
+          templateUrl: 'views/holidaycalender/updateholidaycalender.html',
+          controller:'editholidaycalender'
+          
+          
+      }).when('/scheduler', {
+        templateUrl: 'views/scheduler/showscheduler.html',
+          controller:'scheduler'
+      }).when('/scheduler/createscheduler', {
+        templateUrl: 'views/scheduler/createscheduler.html',
+          controller: 'createscheduler'
+      }).when('/scheduler/delete/:id',{
+          templateUrl: 'views/scheduler/deletescheduler.html',
+          controller:'deletescheduler'
+      }).when('/scheduler/edit/:id',{
+          templateUrl: 'views/scheduler/updatescheduler.html',
+          controller:'editscheduler'
+          
       }).when('/video', {
         templateUrl: 'views/video/showvideo.html',
           controller:'video'
@@ -121,19 +279,6 @@
       }).when('/membership/edit/:id',{
           templateUrl: 'views/membership/updatemembership.html',
           controller:'editmembership'
-          
-      }).when('/state', {
-        templateUrl: 'views/state/showstate.html',
-          controller:'state'
-      }).when('/state/createstate', {
-        templateUrl: 'views/state/createstate.html',
-          controller: 'createstate'
-      }).when('/state/delete/:id',{
-          templateUrl: 'views/state/deletestate.html',
-          controller:'deletestate'
-      }).when('/state/edit/:id',{
-          templateUrl: 'views/state/updatestate.html',
-          controller:'editstate'
           
       }).when('/mlaconstituency', {
         templateUrl: 'views/mlaconstituency/showmlaconstituency.html',
